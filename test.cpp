@@ -7,7 +7,7 @@ struct Node {
     Node* next;
 };
 
-Node* STRAT = NULL;
+Node* START = NULL;
 
 void addNode() {
     int nim;
@@ -50,7 +50,7 @@ void addNode() {
     
 }
 
-bool searchNode(int nim, Node* current, Node* previous) {
+bool serachNode(int nim, Node* current, Node* previous) {
     previous = START;
     current = START;
     while (current != NULL && nim > current->noMhs)
@@ -71,4 +71,14 @@ bool searchNode(int nim, Node* current, Node* previous) {
     {
         return false;
     }
+}
+bool deleteNode(int nim) {
+    Node* current = START;
+    Node* previous = START;
+    if (serachNode(nim, previous, current) == false)
+        return false;
+    previous->next = current->next;
+    if (current == START)
+        START = current->next;
+        return true;
 }
