@@ -15,7 +15,7 @@ void addNode() {
     Node* nodeBaru = new Node();
     cout << "Masukan NIM: ";
     cin >> nim;
-    cout << "Masuka Nama: ";
+    cout << "Masukan Nama: ";
     cin >> nama;
     nodeBaru->noMhs = nim;
     nodeBaru->name = nama;
@@ -120,7 +120,7 @@ void searchData() {
         Node* currentNode = START;
         while (currentNode != NULL) {
             if (currentNode->noMhs == nim) {
-                cout << "NIM: " << currentNode->noMhs << ",Nama: " << currentNode->name << endl;
+                cout << "NIM: " << currentNode->noMhs << ", 1Nama: " << currentNode->name << endl;
                 return;
             }
             currentNode = currentNode->next;
@@ -129,3 +129,65 @@ void searchData() {
     }
 }
 
+int main() {
+    int pilihan;
+    do
+    {
+        try
+        {
+
+            cout << "1. Tambah Data" << endl;
+            cout << "2. Hapus Data" << endl;
+            cout << "3. Tampilkan Data" << endl;
+            cout << "4. Cari Data" << endl;
+            cout << "5. Keluar" << endl;
+            cout << "Pilihan: " << endl;
+            cin >> pilihan;
+            switch (pilihan)
+            {
+            case 1:
+                addNode();
+                cout << "Data Berhasil Ditambahkan" << endl;
+                system("pause");
+                system("cls");
+                break;
+            case 2:
+                if (listEmpty())
+                {
+                    cout << "List kosong" << endl;
+                    system("pause");
+                    system("cls");
+                    break;
+                }
+
+                int nim;
+
+                cout << "Masukan NIM: ";
+                cin >> nim;
+                if (deleteNode(nim)) {
+                    cout << "nim: " << nim << "berhasil dihapus" << endl;
+                    system("pause");
+                    system("cls");
+                }
+                else
+                    cout << "Data tidak ditemukan" << endl;
+                break;
+            case 3:
+                traverse();
+                break;
+            case 4:
+                searchData();
+                break;
+            case 5:
+                break;
+            default:
+                cout << "Pilihan tdak ada" << endl;
+                break;
+            }
+    }   
+    catch (exception e)
+    {
+        cout << "Terjadi kesalahan" << endl;
+    }
+ } while (pilihan != 5);
+}
